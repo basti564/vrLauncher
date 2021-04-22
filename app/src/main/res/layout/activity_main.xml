@@ -16,6 +16,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/info2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/airLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/versionSpinner" />
+
     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
@@ -35,20 +46,30 @@
         android:text="@string/go"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.284" />
+
+    <Button
+        android:id="@+id/connectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/connect"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/portNumber" />
 
     <TextView
         android:id="@+id/selectedText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:text="placeholder"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/goButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/placeholder" />
 
     <Spinner
         android:id="@+id/versionSpinner"
@@ -58,5 +79,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goButton" />
+
+    <EditText
+        android:id="@+id/portNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/port"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/info2"
+        app:layout_constraintTop_toBottomOf="@+id/info2"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/ipAddressInput"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:hint="@string/ipAddress"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/info2"
+        app:layout_constraintTop_toBottomOf="@+id/info2"
+        android:importantForAutofill="no" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

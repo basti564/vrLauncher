@@ -2,4 +2,9 @@
     <string name="app_name">VrShell Intent Launcher</string>
     <string name="go">GO</string>
     <string name="info">Launcher made by Basti564</string>
+    <string name="ipAddress">IP Address</string>
+    <string name="port">Port</string>
+    <string name="connect">Connect</string>
+    <string name="airLink">Air Link</string>
+    <string name="placeholder">placeholder</string>
 </resources>

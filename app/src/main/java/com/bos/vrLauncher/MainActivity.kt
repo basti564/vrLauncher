@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         //objects
         val dropdown = findViewById<com.toptoche.searchablespinnerlibrary.SearchableSpinner>(R.id.spinner)
         val selectedText = findViewById<TextView>(R.id.selectedText)
