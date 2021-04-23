@@ -4,12 +4,10 @@ import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
-import com.toptoche.searchablespinnerlibrary.SearchableSpinner
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +20,10 @@ class MainActivity : AppCompatActivity() {
         val dropdown = findViewById<com.toptoche.searchablespinnerlibrary.SearchableSpinner>(R.id.spinner)
         val selectedText = findViewById<TextView>(R.id.selectedText)
         val goButton = findViewById<Button>(R.id.goButton)
+        val connectButton = findViewById<Button>(R.id.connectButton)
         val versionSpinner = findViewById<Spinner>(R.id.versionSpinner)
+        val ipText = findViewById<TextView>(R.id.ipAddressInput)
+        val portText = findViewById<TextView>(R.id.portNumber)
 
         //version specific stuff
         val items26 = arrayOf("ALL_EVENTS", "ASSISTANT", "AUI_INTERNAL_SETTINGS", "AUI_CHATS", "AUI_MESSENGER", "AUI_PARTIES", "AUI_PEOPLE", "AUI_PEOPLE_FB", "AUI_PROFILE", "AUI_SOCIAL", "AUI_SOCIAL_REAUTH", "AUI_SOCIAL_V2", "AUI_SOCIAL_SETTINGS", "AUI_TABLET_NONE", "AVATAR_EDITOR", "BLOCKANDREPORT", "BLUETOOTH", "BUG_REPORT", "CAMERA_ROLL", "CAPTIVE_WIFI_PORTAL", "DATE_TIME_SETTINGS", "DEFAULT_BROWSER", "DEVICE_BATTERY", "EVENTS", "FBCONNECT", "FRIENDS", "GAMING_ACTIVITY", "GROUP_LAUNCH_APP_SELECTOR", "GROUP_LAUNCH_DESTINATION_SELECTOR", "HAND_TRACKING_NUX", "HEALTH_AND_SAFETY", "HOME", "HOME_FIRST_TIME_NUX", "INSTALLER", "INVITE_FRIENDS", "INVITE_TO_APP", "LAUNCH_IAP", "LIBRARY", "LIVESTREAMING", "LOCKPATTERN", "MEDIA_PREVIEW", "MESSAGES", "NOTIFICATIONS", "PARTIES", "PARTY_RECONNECT_DIALOG", "PAUSE", "PERMISSIONS", "PRESENCE_INVITE", "PROFILE", "PROFILE_PHOTO_EDITOR", "QUICK_MESSAGE", "REMOTE_SYSTEM_ACTION_REDIRECT", "SEARCH", "SETTINGS", "SHARE_MEDIA", "SHARE_SHEET", "SHARE_SHEET_V2", "SHARING", "SOCIAL", "SOCIAL_ADD_FRIENDS", "SOCIAL_REQUESTS", "STORAGE_MANAGER", "STORE", "TV", "UNINSTALLER", "UNLOCK_PATTERN", "USER_BLOCK", "USER_FRIEND_REQUEST", "USER_PROFILE", "USER_REPORT", "USER_UNBLOCK", "WIFI", "NONE", "APP_DOWNLOAD_FAILURE_LOW_STORAGE", "APP_MODE_INCOMPATIBLE", "APP_LAUNCH_BLOCKED_CONTROLLER_REQUIRED", "APP_LAUNCH_BLOCKED_HANDS_REQUIRED", "CONTROLLER_PAIRING", "ENTERPRISE_CERTIFICATE_EXPIRED", "ENTERPRISE_CERTIFICATE_EXPIRING_WARNING", "ENTERPRISE_GUARDIAN_DISABLED_WARNING", "ENTERPRISE_KIOSK_NOT_INSTALLED", "FACEBOOK_BLOCK", "FIRST_TIME_NUX", "FITNESS_TRACKER", "GUARDIAN_DIALOG", "GUARDIAN_DIALOG_ROOMSCALE_URI", "GUARDIAN_DIALOG_SWITCH_ROOMSCALE_URI", "GUARDIAN_DIALOG_STATIONARY_URI", "GUARDIAN_ADJUST_DIALOG", "GUARDIAN_ADJUST_FLOOR", "GUARDIAN_ADJUST_SETUP", "GUARDIAN_CLEAR_HISTORY", "GUARDIAN_CLEAR_SURFACES", "GUARDIAN_CREATE_SURFACE", "GUARDIAN_CREATE_DESK", "INTRUSION_DETECTION_NUX", "IPD_ADJUST", "KEYBOARD", "LAUNCH_CHECK_APP_DEGRADED", "LAUNCH_CHECK_APP_DISABLED", "LAUNCH_CHECK_APP_UPDATE", "LAUNCH_CHECK_CLOUD_STORAGE", "LAUNCH_CHECK_REQUIRES_6DOF", "LAUNCH_CHECK_REQUIRES_AVATAR", "LAUNCH_CHECK_REQUIRES_CONTROLLERS", "LAUNCH_CHECK_REQUIRES_EXCLUSIVE_MICROPHONE", "LAUNCH_CHECK_REQUIRES_HANDS", "LOCAL_STREAM_PRIVACY_CHECK_DIALOG", "LOCAL_STREAM_START_FROM_DEVICE_DIALOG", "LOCAL_STREAM_STOP_FROM_DEVICE_DIALOG", "LOCAL_STREAM_TO_BROWSER_DIALOG", "LOGIN", "MESSENGER_INTEGRITY", "OCULUS_LINK_AVAILABLE", "OCULUS_LINK_DISCONNECTED", "PANEL_REORIENT", "PASSTHROUGH_PORTAL", "PT_ONDEMAND_NUX_DIALOG", "QUEST_VIEW_RECENTER", "QUEST_SHOW_TASKBAR", "QUIT_AND_LAUNCH", "SOCIAL_JOIN_PARTY", "SOCIAL_CONFIRM_JOIN_PARTY", "SOCIAL_CREATE_PARTY_PREVIEW", "SOCIAL_CREATE_VR_INVITE_DIALOG", "JOIN_PARTY_DIALOG", "SOCIAL_PARTY_PRIVACY", "SOCIAL_RECEIVE_INVITE_DIALOG", "STATIONARY_GUARDIAN_V2_NUX", "STATIONARY_GUARDIAN_V2_NUX_USING_ROOMSCALE", "SYSTEM_FAILURE_MESSAGE", "TRACKING_MODE_3DOF_INCOMPAT_DIALOG", "TRACKING_OFF_DIALOG", "UNIVERSAL_SHARE_SHEET", "UNOFFICIAL_APP_INSTALLED_DIALOG", "UNOFFICIAL_APP_LAUNCHED_DIALOG")
@@ -76,6 +77,17 @@ class MainActivity : AppCompatActivity() {
             intent.data = Uri.parse(selectedText.text as String?)
             //intent.putExtra("")
             this.startActivity(intent)
+        }
+
+        connectButton.setOnClickListener {
+            val airIntent = Intent(Intent.ACTION_VIEW)
+            //Format: xrstreamingclient://YOUR.COMPUTER.IP.ADDR:PORT
+            val intentURI = "xrstreamingclient://"+ipText.text.toString()+":"+portText.text.toString() as String?
+            System.out.println("AirLink Attempting to connect: " + intentURI as String?)
+            airIntent.component = ComponentName("com.oculus.xrstreamingclient", "com.oculus.xrstreamingclient.MainActivity")
+            airIntent.data = Uri.parse(intentURI)
+            this.startActivity(airIntent)
+
         }
     }
 }
